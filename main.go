@@ -11,13 +11,20 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"github.com/subosito/gotenv"
 )
 
-func main() {
-	port := getPort()
+var port string
+
+func init() {
+	gotenv.Load()
+	port = getPort()
 	file, _ := ioutil.ReadFile("logo.txt")
 	fmt.Println(string(file))
+	services.GetClient()
 	fmt.Printf("Running on port %v ...", port)
+}
+func main() {
 
 	router := mux.NewRouter()
 	router.HandleFunc("/", hello).Methods("GET")
