@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/gorilla/mux"
 	"github.com/subosito/gotenv"
@@ -22,7 +23,7 @@ func init() {
 	file, _ := ioutil.ReadFile("logo.txt")
 	fmt.Println(string(file))
 	services.GetClient()
-	fmt.Printf("Running on port %v ...", port)
+	fmt.Printf("Running on port %v ...\n", port)
 }
 func main() {
 
@@ -41,6 +42,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 func fibonacciHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	num, _ := strconv.Atoi(vars["num"])
+	defer services.TimeTrack(time.Now(), "Fibonacci")
 	json.NewEncoder(w).Encode(services.Fibonacci(num))
 }
 
