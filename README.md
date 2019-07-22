@@ -1,4 +1,4 @@
-# go-api
+# go-api 
 
 This is an example of a simple REST api used for educational purposes
 
