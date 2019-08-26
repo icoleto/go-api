@@ -1,4 +1,4 @@
-# go-api 
+# go-api
 
 This is an example of a simple REST api used for educational purposes
 
@@ -22,8 +22,6 @@ With the vendor tool the dependencies are uploaded here so for running the app u
 ```
 go run main.go
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Authors
 
