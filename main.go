@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"go-api/dtos"
 	"go-api/services"
 	"io/ioutil"
 	"log"
@@ -41,9 +42,11 @@ func hello(w http.ResponseWriter, r *http.Request) {
 }
 func fibonacciHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	num, _ := strconv.Atoi(vars["num"])
+	num, _ := strconv.ParseFloat(vars["num"], 64)
 	defer services.TimeTrack(time.Now(), "Fibonacci")
-	json.NewEncoder(w).Encode(services.Fibonacci(num))
+
+	result := &dtos.FibonacciDto{N: num, Value: services.Fibonacci(num)}
+	json.NewEncoder(w).Encode(result)
 }
 
 func getPort() string {
