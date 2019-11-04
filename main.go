@@ -30,6 +30,7 @@ func main() {
 
 	router := mux.NewRouter()
 	router.HandleFunc("/", hello).Methods("GET")
+	router.HandleFunc("/favicon.ico", faviconHandler)
 	router.HandleFunc("/fibonacci/{num}", fibonacciHandler).Methods("GET")
 	// router.HandleFunc("/users/{id}").Methods("GET")
 
@@ -47,6 +48,10 @@ func fibonacciHandler(w http.ResponseWriter, r *http.Request) {
 
 	result := &dtos.FibonacciDto{N: num, Value: services.Fibonacci(num)}
 	json.NewEncoder(w).Encode(result)
+}
+
+func faviconHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "relative/path/to/favicon.ico")
 }
 
 func getPort() string {
