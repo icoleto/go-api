@@ -51,7 +51,7 @@ func fibonacciHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func faviconHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "relative/path/to/favicon.ico")
+	http.ServeFile(w, r, "favicon.ico")
 }
 
 func getPort() string {
