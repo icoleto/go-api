@@ -23,6 +23,11 @@ With the vendor tool the dependencies are uploaded here so for running the app u
 go run main.go
 ```
 
+### Utils
+I use this tool for automatic program reload:
+
+>[go-reload](https://github.com/alexedwards/go-reload)
+
 ## Authors
 
 * **Iván Coleto** - [Github - icoleto](https://github.com/icoleto)
