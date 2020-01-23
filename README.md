@@ -24,8 +24,9 @@ go run main.go
 ```
 
 ### Utils
-I use this tool for automatic program reload:
+Use this tool for automatic program reload:
 
+**Note:** Only work on Linux
 >[go-reload](https://github.com/alexedwards/go-reload)
 
 ## Authors
