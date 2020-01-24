@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -15,11 +16,9 @@ import (
 var client *mongo.Client
 
 // CreateDbConnection will initialize de mongo connection and gives a client
-func createDbConnection() (client *mongo.Client) {
 
-	dbuser := os.Getenv("DB_USER")
-	dbpass := os.Getenv("DB_PASS")
-	dbhostname := os.Getenv("DB_HOSTNAME")
+func createDbConnection() (client *mongo.Client) {
+	dbuser, dbpass, dbhostname, _ := getDatabaseConfig()
 	uri := fmt.Sprintf("mongodb://%s:%s@%s", dbuser, dbpass, dbhostname)
 	client, err := mongo.NewClient(options.Client().ApplyURI(uri))
 
@@ -43,9 +42,23 @@ func createDbConnection() (client *mongo.Client) {
 }
 
 // GetClient returns
-func GetClient() *mongo.Client {
+func getClient() *mongo.Client {
 	if client == nil {
-		createDbConnection()
+		client = createDbConnection()
 	}
 	return client
+}
+
+func getDatabaseConfig() (dbuser, dbpass, dbhostname, dbname string) {
+	dbuser = os.Getenv("DB_USER")
+	dbpass = os.Getenv("DB_PASS")
+	dbhostname = os.Getenv("DB_HOSTNAME")
+	dbname = strings.Split(os.Getenv("DB_HOSTNAME"), "/")[1]
+	return
+}
+
+// GetUserCollection return
+func GetUserCollection() *mongo.Collection {
+	_, _, _, dbname := getDatabaseConfig()
+	return getClient().Database(dbname).Collection("user")
 }
