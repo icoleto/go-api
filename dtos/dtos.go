@@ -10,10 +10,10 @@ type FibonacciDto struct {
 
 // User entity Dto
 type User struct {
-	ID                   primitive.ObjectID `bson:"_id"`
-	Name                 string             `bson:"name"`
-	LastName             string             `bson:"lastName"`
-	Gender               string             `bson:"gender"`
-	Country              string             `bson:"country"`
-	ProgrammingLanguages []string           `bson:"programming_languages"`
+	ID                   primitive.ObjectID `json:"id" bson:"_id"`
+	Name                 string             `json:"name" bson:"name"`
+	LastName             string             `json:"lastName" bson:"lastname"`
+	Gender               string             `json:"gender" bson:"gender"`
+	Country              string             `json:"country" bson:"country"`
+	ProgrammingLanguages []string           `json:"programmingLanguages" bson:"programming_languages"`
 }
