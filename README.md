@@ -24,10 +24,20 @@ go run main.go
 ```
 
 ### Utils
-Use this tool for automatic program reload:
 
-**Note:** Only work on Linux
->[go-reload](https://github.com/alexedwards/go-reload)
+#### Air
+##### Use this tool for automatic program reload:
+>[air](https://github.com/cosmtrek/air)
+
+##### Install
+``` go 
+go get -u github.com/cosmtrek/air
+```
+##### Usage
+Enter into your project and run:
+```
+air
+```
 
 ## Authors
 
